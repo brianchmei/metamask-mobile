@@ -497,6 +497,8 @@ class DrawerView extends PureComponent {
           tag = strings('accounts.imported');
         } else if (keyring.type === KeyringTypes.qr) {
           tag = strings('transaction.hardware');
+        } else if (keyring.type === KeyringTypes.simgap) { // Added by Brian
+          tag = strings('transaction.hardware');
         }
         break;
       }
@@ -614,6 +616,7 @@ class DrawerView extends PureComponent {
       ...createAccountSelectorNavDetails({
         onOpenImportAccount: this.hideDrawer,
         onOpenConnectHardwareWallet: this.hideDrawer,
+        onOpenConnectSIMGapHardwareWallet: this.hideDrawer, // Added By Brian
         onSelectAccount: this.hideDrawer,
       }),
     );

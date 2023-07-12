@@ -28,6 +28,8 @@ import { PermissionController } from '@metamask/permission-controller';
 import SwapsController, { swapsUtils } from '@metamask/swaps-controller';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MetaMaskKeyring as QRHardwareKeyring } from '@keystonehq/metamask-airgapped-keyring';
+// Added by Brian
+import { SIMGapKeyring } from './SIMGapKeyring';
 import Encryptor from './Encryptor';
 import Networks, {
   isMainnetByChainId,
@@ -233,7 +235,8 @@ class Engine {
       const phishingController = new PhishingController();
       phishingController.maybeUpdateState();
 
-      const additionalKeyrings = [QRHardwareKeyring];
+      // Updated by Brian
+      const additionalKeyrings = [QRHardwareKeyring, SIMGapKeyring];
 
       const getIdentities = () => {
         const identities = preferencesController.state.identities;

@@ -17,6 +17,9 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactNativeHost;
 import java.util.List;
 import io.metamask.nativeModules.PreventScreenshotPackage;
+// Updated By IAN
+import io.metamask.nativeModules.SIMGapWalletPackage;
+
 import android.webkit.WebView;
 import android.os.Bundle;
 
@@ -44,9 +47,11 @@ public class MainApplication extends Application implements ShareApplication, Re
 			packages.add(new PreventScreenshotPackage());
 			packages.add(new ReactVideoPackage());
 			packages.add(new RCTAnalyticsPackage());
-      packages.add(new RCTMinimizerPackage());
+      		packages.add(new RCTMinimizerPackage());
+	  // Updated By IAN
+			packages.add(new SIMGapWalletPackage());
 
-      return packages;
+      		return packages;
 		}
 
     @Override

@@ -69,6 +69,10 @@ export const recreateVaultWithNewPassword = async (
 
   await KeyringController.restoreQRKeyring(serializedQRKeyring);
 
+  // Added by Brian
+  const sgKeyring = await KeyringController.getOrAddSIMGapKeyring();
+  const serializedSGKeyring = await sgKeyring.serialize();
+  await KeyringController.restoreSIMGapKeyring(serializedSGKeyring);
   // Create previous accounts again
   for (let i = 0; i < existingAccountCount - 1; i++) {
     await KeyringController.addNewAccount();

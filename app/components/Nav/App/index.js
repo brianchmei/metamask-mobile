@@ -68,6 +68,8 @@ import AssetOptions from '../../Views/AssetOptions';
 import ImportPrivateKey from '../../Views/ImportPrivateKey';
 import ImportPrivateKeySuccess from '../../Views/ImportPrivateKeySuccess';
 import ConnectQRHardware from '../../Views/ConnectQRHardware';
+// Added by Brian
+import ConnectSIMGapHardware from '../../Views/ConnectSIMGapHardware';
 import { AUTHENTICATION_APP_TRIGGERED_AUTH_NO_CREDENTIALS } from '../../../constants/error';
 import { UpdateNeeded } from '../../../components/UI/UpdateNeeded';
 import { EnableAutomaticSecurityChecksModal } from '../../../components/UI/EnableAutomaticSecurityChecksModal';
@@ -282,8 +284,8 @@ const App = ({ userLoggedIn }) => {
         const isUnlocked = KeyringController.isUnlocked();
         isUnlocked
           ? SharedDeeplinkManager.parse(deeplink, {
-              origin: AppConstants.DEEPLINKS.ORIGIN_DEEPLINK,
-            })
+            origin: AppConstants.DEEPLINKS.ORIGIN_DEEPLINK,
+          })
           : SharedDeeplinkManager.setDeeplink(deeplink);
       }
     } catch (e) {
@@ -557,6 +559,17 @@ const App = ({ userLoggedIn }) => {
     </Stack.Navigator>
   );
 
+  // Added by Brian
+  const ConnectSIMGapHardwareFlow = () => (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="ConnectSIMGapHardware" component={ConnectSIMGapHardware} />
+    </Stack.Navigator>
+  );
+
   const EditAccountNameFlow = () => (
     <Stack.Navigator>
       <Stack.Screen name="EditAccountName" component={EditAccountName} />
@@ -574,6 +587,13 @@ const App = ({ userLoggedIn }) => {
       />
     </Stack.Navigator>
   );
+
+  // Added by Brian as following:
+  // <Stack.Screen
+  //   name="ConnectSIMGapHardwareFlow"
+  //   component={ConnectSIMGapHardwareFlow}
+  //   options={{ animationEnabled: true }}
+  // />
 
   return (
     // do not render unless a route is defined
@@ -635,6 +655,11 @@ const App = ({ userLoggedIn }) => {
             <Stack.Screen
               name="ConnectQRHardwareFlow"
               component={ConnectQRHardwareFlow}
+              options={{ animationEnabled: true }}
+            />
+            <Stack.Screen
+              name="ConnectSIMGapHardwareFlow"
+              component={ConnectSIMGapHardwareFlow}
               options={{ animationEnabled: true }}
             />
             <Stack.Screen

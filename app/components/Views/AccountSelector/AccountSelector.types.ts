@@ -23,6 +23,11 @@ export interface AccountSelectorParams {
    */
   onOpenConnectHardwareWallet?: () => void;
   /**
+   * Optional callback that is called whenever connect SIMGap hardware wallet is being opened.
+   */
+  // Added by Brian
+  onOpenConnectSIMGapHardwareWallet: () => void;
+  /**
    * Optional callback that is called whenever an account is selected.
    */
   onSelectAccount?: (address: string) => void;

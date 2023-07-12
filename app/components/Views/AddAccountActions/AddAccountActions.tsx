@@ -37,6 +37,14 @@ const AddAccountActions = ({ onBack }: AddAccountActionsProps) => {
     AnalyticsV2.trackEvent(MetaMetricsEvents.CONNECT_HARDWARE_WALLET, {});
   }, [onBack, navigate]);
 
+  // Added by Brian
+  const openConnectSIMGapHardwareWallet = useCallback(() => {
+    Logger.log("USER_INTENT.ConnectHW in AddAccountActions !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    navigate('ConnectSIMGapHardwareFlow');
+    onBack();
+    AnalyticsV2.trackEvent(MetaMetricsEvents.CONNECT_HARDWARE_WALLET, {});
+  }, [onBack, navigate]);
+
   const createNewAccount = useCallback(async () => {
     const { KeyringController, PreferencesController } = Engine.context;
     try {
@@ -78,7 +86,7 @@ const AddAccountActions = ({ onBack }: AddAccountActionsProps) => {
         <AccountAction
           actionTitle={strings('account_actions.add_hardware_wallet')}
           iconName={IconName.Hardware}
-          onPress={openConnectHardwareWallet}
+          onPress={openConnectSIMGapHardwareWallet} // Modified by Brian
           disabled={isLoading}
         />
       </View>

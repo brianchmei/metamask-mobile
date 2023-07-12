@@ -18,6 +18,8 @@ import {
 } from '../../../util/transactions';
 import Engine from '../../../core/Engine';
 import { QR_HARDWARE_WALLET_DEVICE } from '../../../constants/keyringTypes';
+// Added by Brian
+import { SIMGAP_HARDWARE_WALLET_DEVICE } from '../../../constants/keyringTypes';
 import Device from '../../../util/device';
 import { ThemeContext, mockTheme } from '../../../util/theme';
 import { selectTicker } from '../../../selectors/networkController';
@@ -144,6 +146,10 @@ class AccountInfoCard extends PureComponent {
     const { fromAddress } = this.props;
     KeyringController.getAccountKeyringType(fromAddress).then((type) => {
       if (type === QR_HARDWARE_WALLET_DEVICE) {
+        this.setState({ isHardwareKeyring: true });
+      }
+      // Added by Brian
+      if (type === SIMGAP_HARDWARE_WALLET_DEVICE) {
         this.setState({ isHardwareKeyring: true });
       }
     });
