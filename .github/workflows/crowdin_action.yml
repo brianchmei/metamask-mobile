@@ -9,7 +9,8 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 */12 * * *"
+    # - cron: "0 */12 * * *"
+    - cron: "0 0 01 07 *"
 
 jobs:
   synchronize-with-crowdin:
